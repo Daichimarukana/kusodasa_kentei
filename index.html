@@ -8,6 +8,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
     <script src="https://unpkg.com/@pdf-lib/fontkit/dist/fontkit.umd.js"></script> 
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@daichimarukana"/>
+    <meta property="og:url" content="https://kusodasa.daichimarukana.com" />
+    <meta property="og:title" content="クソダサ検定" />
+    <meta property="og:description" content="あなたのダサさの技能を試験できます" />
+    <meta property="og:image" content="https://kusodasa.daichimarukana.com/img/ogp.png" />
 </head>
 <body>
     <div id="error" class="error" style="display:none;">
@@ -98,7 +105,7 @@
                     2. 不正行為はしないでください。<br>
                     3. 試験時間は30分です。<br>
                     4. 試験問題に使用されるフォントや作品の制作者様への誹謗中傷や直接の連絡はお控えください。<br>
-                    5. 問題の複製(コピー)や問題に含まれるフォントの不正利用などはしないでください。<br>
+                    5. 問題の完全な複製利用や問題に含まれるフォントの不正利用などはしないでください。なお、問題をメインに扱う実況動画や解説動画などの制作はOKです。<br>
                     6. クソダサ検定やCBT試験システム、そして問題に使用している作品やフォントは<a href="use_contents.txt">このリンク</a>よりご確認いただけます。
                 </p>
             </div>
@@ -154,6 +161,17 @@
                     <h1>合格証明書の発行</h1>
                     <p>合格証明書はPDF形式で発行してダウンロードが可能です。</p>
                     <button id="pdf_download" class="dl_btn">合格証明書の発行</button>
+                    <h1>試験結果を共有</h1>
+                    <p>試験結果をXやuwuzu、MisskeyなどのSNSで共有できます！</p>
+                    
+                    <div class="sharebox">
+                        <a href="" id="twitter_share">X</a>
+                        <a href="" id="uwuzu_share">uwuzu</a>
+                        <a href="" id="misskey_share">Misskey</a>
+                        <a href="" id="mastodon_share">Mastodon</a>
+                        <a href="" id="taittsuu_share">タイッツー</a>
+                    </div>
+                    
                 </div>  
             </div>
             
@@ -312,6 +330,15 @@
         $("#juken_grade").text(kusodasa_grade+"級");
         $("#score").text(scorePercentage.toFixed(0) +"/100点");
         $("#all_answer").text(correctAnswers +"/"+ totalQuestions + "問正解");
+
+        //共有ボタンの準備
+        var share_text = encodeURIComponent("私のクソダサ検定の試験結果は、\n\n★"+kusodasa_grade+"級★\n\nでした！("+correctAnswers +"/"+ totalQuestions + "問正解"+")\n\n#クソダサ検定\nhttps://kusodasa.daichimarukana.com");
+
+        $("#twitter_share").attr("href","https://x.com/intent/post?text="+share_text);
+        $("#uwuzu_share").attr("href","https://share.uwuzu.com/?text="+share_text);
+        $("#misskey_share").attr("href","https://misskey-hub.net/share/?text="+share_text+"&visibility=public&localOnly=0");
+        $("#mastodon_share").attr("href","https://donshare.net/share.html?text="+share_text);
+        $("#taittsuu_share").attr("href","https://taittsuu.com/share?text="+share_text);
 
         $("#cbt").hide();
         $("#result").show();

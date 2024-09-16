@@ -256,6 +256,24 @@ main .result .result_flex .download_box .dl_btn:hover{
     color: #000000;
     border: solid #CCC 1px;
 }
+main .result .result_flex .download_box .sharebox{
+    margin: 32px auto;
+    width: calc(100% - 32px);
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+main .result .result_flex .download_box .sharebox a{
+    margin: 6px 6px;
+    padding: 8px 12px;
+    background-color: #00FF00;
+    color: #FFFFFF;
+    box-shadow: 10px 5px 5px #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
 .flexbox{
     margin: 32px 0px;
     width: 100%;
