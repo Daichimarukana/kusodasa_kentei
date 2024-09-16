@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>クソダサ検定</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit/dist/fontkit.umd.js"></script> 
+</head>
+<body>
+    <div id="error" class="error" style="display:none;">
+        <p>Error</p>
+    </div>
+
+    <div class="top">
+        <div class="left">
+            <img src="img/logo.png">
+        </div>
+        <div class="right">
+            <p>現在時刻: <span id="now_time">10:00:00</span></p>
+            <p>クソダサ検定 2024年度分 夏季問題</p>
+            <p id="nokori_time" style="display: none;">残り時間: 30:00</p>
+        </div>
+    </div>
+
+    <main>
+        <div id="top">
+            <h1>クソダサ検定</h1>
+            <h2>クソダサ検定とは？</h2>
+            <p>クソダサ検定は、どれだけダサいデザインを作成できるか、ダサいデザイン特有の要素を知っているかを確かめられる検定です。<br>
+                無料で試験は受けることが可能です。<br>
+                どれだけダサいコンテンツを作成できるかの証明に利用できます。</p>
+            <h2>試験問題について</h2>
+            <p>色彩、フォント、図形、配置、大きさ、画像の観点から出題され、ダサいデザイン能力を試験します。</p>
+            <h2>クソダサ検定の級と特徴</h2>
+            <p>クソダサ検定の級は試験結果により評価され通知されます。<br>
+                級ごとに問題が分かれているということはなく、同一の問題の総合点数から評価しランク付けを行います。</p>
+            <dl>
+                <dt>1級</dt>
+                <dd>
+                    プロデザイナーもしくはクソダサデザイン極めし者レベル。<br>
+                    ダサいデザイン特有の要素や配置を知り尽くしていると言っても良いでしょう。<br>
+                    ダサいデザインを無意識で作成している人には気づけない、そんな難しいダサいポイントも見分けられているのでむしろデザイナーといっても過言では無いかもしれません。
+                </dd>
+                <dt>2級</dt>
+                <dd>
+                    ダサいデザインにある程度気づけているが、まだダサいデザインを作ってしまうレベル。<br>
+                    ダサいデザインの特徴にある程度気づけているので、ダサいコンテンツを意図して作ることが可能なほどの能力があります。<br>
+                    ですが、いいデザインを作成しているつもりでも無意識のうちに少しのダサい要素を入れてしまっている恐れがあります。
+                </dd>
+                <dt>3級</dt>
+                <dd>
+                    ダサいデザインを無意識で量産しているレベル。<br>
+                    ダサいデザインに気づけておらず、自分で作成しているダサい作品の見た目が普通だと思い込んでいる可能性があります。<br>
+                    再度ダサいデザインの特徴に気づき、よりよく、見やすいデザインを作れるように心がけられると良いと評価されます。
+                </dd>
+            </dl>
+            <h2>クソダサ検定を受けるには</h2>
+            <p>このページの下部にある「クソダサ検定を受験する」より受験が可能です。<br>
+                結果は試験終了後すぐに発表されます。</p>
+            <h2>試験方法</h2>
+            <p>クソダサ検定の試験はブラウザ上でのCBT方式で行われます。<br>
+                試験後、結果はPDFでダウンロードが可能です。
+            </p>
+
+            <h1>クソダサ検定を受験する</h1>
+
+            <div class="juken_form">
+                <div class="juken_notice">
+                    <h1>試験前の注意事項</h1>
+                    <p>
+                        「受験する」を押すと問題に関しての規約が出てくるため、それに同意してください。<br>
+                        試験中、「試験終了」ボタンを押すと試験を途中でも終了することができます。<br>
+                        この場合試験結果は発表されず、試験前の状態に戻ります。<br>
+                        試験時間は30分です。試験開始より30分経過すると自動的に試験は終了し、結果が発表されます。<br>
+                        <br>
+                        クソダサ検定の運営は<a href="https://daichimarukana.com/">だいちまる</a>が行っております。<br>
+                        質問などございましたら上のリンクよりContactMeより連絡をお願いいたします。<br>
+                        <br>
+                        受験者名や入力された回答情報は一切サーバーや外部サービスへ送信されることはありません。<br>
+                        安心してご利用ください。
+                    </p>
+                </div>
+                <input type="text" placeholder="受験者名" class="juken_name" id="juken_name">
+                <button id="juken" class="juken_btn">受験する</button>
+            </div>
+        </div>
+        <div id="terms" style="display: none;" class="terms">
+            <h1>ようこそ　<span id="username"></span>様</h1>
+            <p>試験の前に以下の同意事項に同意していただく必要があります。<br>
+                同意後、試験を開始してください。</p>
+            <div class="notice">
+                <h1>試験同意の注意事項</h1>
+                <p>
+                    1. 画面に従って操作してください。<br>
+                    2. 不正行為はしないでください。<br>
+                    3. 試験時間は30分です。<br>
+                    4. 試験問題に使用されるフォントや作品の制作者様への誹謗中傷や直接の連絡はお控えください。<br>
+                    5. 問題の複製(コピー)や問題に含まれるフォントの不正利用などはしないでください。<br>
+                    6. クソダサ検定やCBT試験システム、そして問題に使用している作品やフォントは<a href="use_contents.txt">このリンク</a>よりご確認いただけます。
+                </p>
+            </div>
+
+            <div class="flexbox">
+                <button id="juken_doui" class="btn">同意する</button>
+                <button id="juken_nodoui" class="btn">同意しない</button>
+            </div>
+            
+        </div>
+        <div id="cbt" style="display: none;" class="cbt">
+            <h1 id="question_number">問X/X [読み込み中]</h1>
+            <div class="cbt_flex">
+                <div class="question">
+                    <p id="q_text">読み込み中</p>
+                    <img src="img/logo.png" id="q_img">
+                    <div class="answer_box">
+                        <p id="ans_1">イ: 回答なし</p>
+                        <p id="ans_2">ロ: 回答なし</p>
+                        <p id="ans_3">ハ: 回答なし</p>
+                        <p id="ans_4">ニ: 回答なし</p>
+                    </div>
+                </div>
+                <div class="answer">
+                    <p>解答欄</p>
+                    <label><input type="radio" name="user_answer" id="user_answer_i" value="i">イ</label>
+                    <label><input type="radio" name="user_answer" id="user_answer_r" value="r">ロ</label>
+                    <label><input type="radio" name="user_answer" id="user_answer_h" value="h">ハ</label>
+                    <label><input type="radio" name="user_answer" id="user_answer_n" value="n">ニ</label>
+                </div>
+            </div>
+            <div class="operation">
+                <div class="left">
+                    <button id="back_question" class="op_btn">＜ 前の問へ</button>
+                    <button id="next_question" class="op_btn">次の問へ ＞</button>
+                </div>
+                <div class="right">
+                    <button id="end_of_question" class="op_end">試験終了</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="result" style="display: none;" class="result">
+            <h1>試験結果</h1>
+            <p>あなたの試験結果は以下の通りです。</p>
+            <div class="result_flex">
+                <div class="kyu_box">
+                    <h1 id="juken_grade">1級</h1>
+                    <p id="score">60/100点</p>
+                    <p id="all_answer">15/25問</p>
+                </div>
+                <div class="download_box">
+                    <h1>合格証明書の発行</h1>
+                    <p>合格証明書はPDF形式で発行してダウンロードが可能です。</p>
+                    <button id="pdf_download" class="dl_btn">合格証明書の発行</button>
+                </div>  
+            </div>
+            
+        </div>
+    </main>
+</body>
+
+<script>
+    var article;
+    var currentQuestion = 0;
+    var answers = [];
+    var ymd_juken;
+    var ymd_hakko;
+    var grade;
+    var timer;
+
+    function showError(text){
+        $("#error").children("p").text(text);
+        $("#error").show();
+        setTimeout(function(){
+            $("#error").hide();
+        }, 5000);
+    }
+    function showClock() {
+        let nowTime = new Date();
+        let nowHour = nowTime.getHours();
+        let nowMin  = nowTime.getMinutes();
+        let nowSec  = nowTime.getSeconds();
+        let msg = "" + nowHour + ":" + nowMin + ":" + nowSec;
+        $("#now_time").text(msg);
+    }
+
+    var all_time = 1800;
+    function showTimer() {
+        all_time = all_time - 1;
+        var nokoriMin = Math.floor(all_time % 3600 / 60);
+        var nokoriSec = all_time % 60;
+        let msg = nokoriMin + ":" + nokoriSec;
+        $("#nokori_time").text("残り時間: "+msg);
+        if(all_time < 0){
+            grade = pointCalc();
+        }
+    }
+
+    function showQuestion(num) {
+        $('#question_number').text(
+            `問${num+1}/${article.length} [${article[num].syu}]`
+        ).show();
+        
+        $('#q_text').text(
+            `${article[num].question}`
+        ).show();
+
+        if(article[num].image){
+            $('#q_img').attr('src', article[num].image);
+            $('#q_img').show();
+        }else{
+            $('#q_img').attr('src', "");
+            $('#q_img').hide();
+        }
+
+        $('#ans_1').text(
+            `イ: ${article[num].answer["1"]}`
+        ).show();
+        $('#ans_2').text(
+            `ロ: ${article[num].answer["2"]}`
+        ).show();
+        $('#ans_3').text(
+            `ハ: ${article[num].answer["3"]}`
+        ).show();
+        $('#ans_4').text(
+            `ニ: ${article[num].answer["4"]}`
+        ).show();
+
+        if (answers[num]) {
+            $(`input[name="user_answer"][value="${answers[num]}"]`).prop('checked', true);
+        } else {
+            $('input[name="user_answer"]').prop('checked', false); // デフォルトの選択状態をクリア
+        }
+    }
+    //次の問へ
+    function nextQuestion() {
+        var selectedAnswer = $('input[name="user_answer"]:checked').val();
+        answers[currentQuestion] = selectedAnswer;
+
+        if (currentQuestion < article.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+    }
+    
+    //前の問へ
+    function previousQuestion() {
+        var selectedAnswer = $('input[name="user_answer"]:checked').val();
+        answers[currentQuestion] = selectedAnswer;
+
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
+    }
+
+    function saveAnswer(num) {
+        let selectedAnswer = $('input[name="user_answer"]:checked').val();
+        answers[num] = selectedAnswer;
+    }
+
+    function answerCheck(num,ans) {
+        var ans_num = 0;
+        if(ans == "i"){
+            ans_num = 1;
+        }else if(ans == "r"){
+            ans_num = 2;
+        }else if(ans == "h"){
+            ans_num = 3;
+        }else if(ans == "n"){
+            ans_num = 4;
+        }
+        if(!ans_num == 0){
+            if(article[num].good_ans == ans_num){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    function pointCalc() {
+        clearInterval(timer);
+        $("#nokori_time").hide();
+
+        let correctAnswers = 0;
+        let totalQuestions = article.length;
+
+        // answers[num] から各問題の解答を参照して採点
+        for (let i = 0; i < totalQuestions; i++) {
+            let userAnswer = answers[i]; // ユーザーの解答を取得
+
+            if (answerCheck(i, userAnswer)) {
+                correctAnswers++; // 正解ならカウントを増やす
+            }
+        }
+
+        let scorePercentage = (correctAnswers / totalQuestions) * 100;
+        let kusodasa_grade;
+        if(scorePercentage.toFixed(0) >= 90){
+            kusodasa_grade = "1"
+        }else if(scorePercentage.toFixed(0) >= 60){
+            kusodasa_grade = "2"
+        }else{
+            kusodasa_grade = "3"
+        }
+
+        $("#juken_grade").text(kusodasa_grade+"級");
+        $("#score").text(scorePercentage.toFixed(0) +"/100点");
+        $("#all_answer").text(correctAnswers +"/"+ totalQuestions + "問正解");
+
+        $("#cbt").hide();
+        $("#result").show();
+
+        return kusodasa_grade;
+    }
+
+    
+
+    $(document).ready(function() {
+        setInterval(showClock,1000);
+
+        $("#juken").on("click",function(){
+            var username = $("#juken_name").val();
+            if(username){
+                $("#username").text(username);
+                $("#top").hide();
+                $("#terms").show();
+
+                $("#juken_doui").on("click",function(){
+                    if(window.confirm('同意します')){
+                        $("#terms").hide();
+                        $("#cbt").show();
+                        $("#nokori_time").show();
+                        timer = setInterval(showTimer,1000);
+
+                        $.getJSON('mondai.json', function(data) {
+                            article = data.question;
+                            showQuestion(0);
+                            let date = new Date();
+                            let year = date.getFullYear();
+                            let month = date.getMonth() + 1;
+                            let day = date.getDate();
+                            ymd_juken = (year + '年' + month + '月' + day + '日');
+
+                        }).fail(function() {
+                            showError("試験問題を取得できませんでした！");
+                        });
+                        
+                        $('input[name="user_answer"]').on('change', function() {
+                            saveAnswer(currentQuestion);
+                        });
+
+                        $("#next_question").on("click", function() {
+                            nextQuestion();
+                        });
+                        $("#back_question").on("click", function() {
+                            previousQuestion();
+                        });
+
+                        $("#end_of_question").on("click", function() {
+                            if(window.confirm('試験を終了しますか？\n終了後、すぐに採点を行い、結果が表示されます。')){
+                                grade = pointCalc();
+
+                                $('#pdf_download').on('click', function() { 
+                                    const { PDFDocument, rgb } = PDFLib; 
+                                
+                                    async function createPdf() { 
+                                        try {
+                                            const existingPdfBytes = await fetch('/img/base_pdf.pdf').then(res => res.arrayBuffer()); 
+                                            const pdfDoc = await PDFDocument.load(existingPdfBytes); 
+
+                                            pdfDoc.registerFontkit(fontkit); 
+                                            const BIZ_UDP_GothicBytes = await fetch('/img/BIZUDPGothic-Bold.ttf').then(
+                                                (res) => res.arrayBuffer()
+                                            );
+                                            const BIZ_UDP = await pdfDoc.embedFont(BIZ_UDP_GothicBytes);
+                                            
+                                            const pages = pdfDoc.getPages(); 
+                                            const page = pages[0]; 
+                                            const { width, height } = page.getSize(); 
+                                
+                                            page.drawText(grade, { 
+                                                x: width - 116, 
+                                                y: height - 101, 
+                                                size: 32, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            page.drawText(username, { 
+                                                x: width / 2 - (8 * (username.length)), 
+                                                y: height - 220, 
+                                                size: 20, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            page.drawText("2024", { 
+                                                x: width - 275, 
+                                                y: height - 283.6, 
+                                                size: 18, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            page.drawText("夏", { 
+                                                x: width - 160, 
+                                                y: height - 283.6, 
+                                                size: 18, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            page.drawText(grade, { 
+                                                x: width - 106, 
+                                                y: height - 315.6, 
+                                                size: 18, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            let date = new Date();
+                                            let year = date.getFullYear();
+                                            let month = date.getMonth() + 1;
+                                            let day = date.getDate();
+                                            ymd_hakko = (year + '年' + month + '月' + day + '日');
+
+                                            page.drawText(ymd_juken, { 
+                                                x: 116, 
+                                                y: 74,
+                                                size: 12, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+                                            page.drawText(ymd_hakko, { 
+                                                x: 303, 
+                                                y: 74,
+                                                size: 12, 
+                                                font: BIZ_UDP, 
+                                                color: rgb(0, 0, 0), 
+                                            });
+
+
+                                            const pdfBytes = await pdfDoc.save(); 
+                                            window.open(URL.createObjectURL(new Blob([pdfBytes], {type: 'application/pdf'})));
+                                        } catch (error) {
+                                            showError("PDF生成にエラーが発生しました！");
+                                        }
+                                    }
+
+                                    createPdf(); 
+                                });
+
+                            }
+                        });
+
+                    } else {
+                        alert("同意しないと試験を受けることはできません。\n同意しない場合はページを閉じてください。");
+                    }
+                });
+                $("#juken_nodoui").on("click",function(){
+                    alert("同意しないと試験を受けることはできません。\n同意しない場合はページを閉じてください。");
+                });
+            }else{
+                showError("受験者名を入力してください。");
+            }
+        });
+    });
+</script>
+
+</html>

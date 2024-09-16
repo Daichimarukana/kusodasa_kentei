@@ -1,0 +1,22 @@
+以下の作品の制作者様にはこの場を借りて深く感謝いたします。
+
+[フォント]
+ＭＳ ゴシック
+BIZ UDPゴシック
+LINE Seed
+HG創英角ﾎﾟｯﾌﾟ体
+HG丸ゴシックM-PRO
+ＭＳ 明朝
+Noto Sans JP
+Comic Sans
+源暎エムゴ
+[画像]
+Microsoft PowerPoint標準アセット
+Wikipedia サトウキビ の記事よりサトウキビの画像
+[図形]
+Microsoft PowerPoint標準図形
+Google Slide標準図形
+[JavaScriptライブラリ]
+jQuery
+PDF-LIB
+fontkit

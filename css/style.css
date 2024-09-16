@@ -1,0 +1,344 @@
+body{
+    margin: 0px;
+    width: 100%;
+    height: fit-content;
+    background-color: #FFFFFF;
+    font-family: "MS PGothic", sans-serif;
+}
+button{
+    font-family: "MS PGothic", sans-serif;
+}
+input{
+    font-family: "MS PGothic", sans-serif;
+}
+.top{
+    width: 100%;
+    margin: 0px;
+    height: 128px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #00FFFF;
+    border-radius: 0px;
+    border-bottom: solid 4px #000000;
+}
+.top .left{
+    margin-left: 0px;
+    display: flex;
+}
+.top .left img{
+    width: fit-content;
+    height: 100px;
+    margin: 14px;
+    object-fit: inherit;
+    border-radius: 0px;
+}
+
+.top .right{
+    margin-right: 16px;
+    display: block;
+}
+.top .right p{
+    text-align: right;
+    font-size: 20px;
+    margin: 18px 0px;
+}
+main{
+    margin: 0px auto;
+    width: 1080px;
+}
+main .juken_form{
+    width: 100%;
+    display: block;
+}
+main .juken_form .juken_notice{
+    width: 100%;
+    background-color: #CCC;
+    border: solid 1px #000;
+    padding: 0px 16px;
+}
+main .juken_form .juken_notice p{
+    font-style: 20px;
+    font-weight: bold;
+    color: #000;
+}
+main .juken_form .juken_name{
+    margin: 16px auto;
+    width: calc(100% / 2);
+    height: 24px;
+    display: block;
+}
+main .juken_form .juken_btn{
+    margin: 16px auto;
+    width: 200px;
+    height: 48px;
+    text-align: center;
+    color: #FFFF00;
+    background-color: #FF0000;
+    display: block;
+}
+
+main .terms .notice{
+    width: 100%;
+    background-color: #CCC;
+    border: solid 1px #000;
+    padding: 0px 16px;
+}
+
+main .btn{
+    width: 200px;
+    height: 48px;
+    background-color: #EFEFEF;
+    color: #000;
+    border: solid #767676 1px;
+}
+main .btn:hover{
+    width: 200px;
+    height: 48px;
+    background-color: #00FF00;
+    color: #FF0000;
+    border: solid #000 1px;
+}
+
+main .cbt{
+    width: 100%;
+    height: fit-content;
+}
+main .cbt h1{
+    font-style: 32px;
+    font-weight: bold;
+    color: #000;
+}
+main .cbt p{
+    margin-top: 0px;
+    font-style: 16px;
+    font-weight: normal;
+    color: #000;
+}
+main .cbt .cbt_flex{
+    height: calc(70dvh - 64px);
+    display: flex;
+    justify-content: space-between;
+}
+main .cbt .cbt_flex .question{
+    width: calc(70% - 40px);
+    background-color: #FFFFFF;
+    border:  solid #CCC 1px;
+    padding: 16px;
+    overflow: hidden;
+}
+main .cbt .cbt_flex .question img{
+    width: auto;
+    height: fit-content;
+    max-height: calc(60% - 16px);
+    max-width: 100%;
+    object-fit: inherit;
+    border:  solid #CCC 1px;
+    margin-bottom: 16px;
+}
+main .cbt .cbt_flex .answer{
+    width: calc(30% - 40px);
+    background-color: #FFFFFF;
+    border:  solid #CCC 1px;
+    padding: 16px;
+    overflow: hidden;
+    display: block;
+}
+main .cbt .cbt_flex .answer p{
+    font-style: 24px;
+    font-weight: bold;
+    color: #000;
+}
+main .cbt .cbt_flex .answer label{
+    display: block;
+    margin: 6px 0px;
+    color: #000;
+    font-weight: normal;
+}
+main .cbt .cbt_flex .answer label:has(input[type="radio"]:checked) {
+    color: #FF0000;
+    font-weight: bold;
+}
+main .cbt .operation{
+    margin-top: 16px;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+}
+main .cbt .operation .left{
+    display: flex;
+}
+main .cbt .operation .left .op_btn{
+    width: 200px;
+    height: 48px;
+    background-color: #EFEFEF;
+    color: #000;
+    border: solid #767676 1px;
+    margin-right: 16px;
+}
+main .cbt .operation .left .op_btn:hover{
+    background-color: #FFFFFF;
+    color: #000000;
+    border: solid #CCC 1px;
+}
+main .cbt .operation .right{
+    display: flex;
+}
+main .cbt .operation .right .op_end{
+    width: 200px;
+    height: 48px;
+    background-color: #EFEFEF;
+    color: #000;
+    border: solid #767676 1px;
+    margin-right: 16px;
+}
+main .cbt .operation .right .op_end:hover{
+    background-color: #FFFF00;
+    color: #FF0000;
+    border: solid #FF0000 1px;
+}
+
+main .result{
+    width: 100%;
+    height: fit-content;
+}
+main .result h1{
+    font-style: 32px;
+    font-weight: bold;
+    color: #000;
+}
+main .result p{
+    margin-top: 0px;
+    font-style: 16px;
+    font-weight: normal;
+    color: #000;
+}
+main .result .result_flex{
+    height: calc(70dvh - 64px);
+    display: flex;
+    justify-content: space-between;
+}
+main .result .result_flex .kyu_box{
+    width: calc(50% - 40px);
+    background-color: #FFFFFF;
+    border:  solid #CCC 1px;
+    padding: 16px;
+    overflow: hidden;
+    text-align: center;
+}
+main .result .result_flex .kyu_box h1{
+    font-size: 128px;
+    font-weight: bold;
+}
+main .result .result_flex .kyu_box p{
+    font-size: 48px;
+    font-weight: normal;
+}
+main .result .result_flex .download_box{
+    width: calc(50% - 40px);
+    background-color: #FFFFFF;
+    border:  solid #CCC 1px;
+    padding: 16px;
+    overflow: hidden;
+}
+main .result .result_flex .download_box .dl_btn{
+    margin: 32px auto;
+    width: calc(100% - 32px);
+    height: 48px;
+    background-color: #EFEFEF;
+    color: #000;
+    border: solid #767676 1px;
+    margin-right: 16px;
+    display: block;
+}
+main .result .result_flex .download_box .dl_btn:hover{
+    background-color: #FFFFFF;
+    color: #000000;
+    border: solid #CCC 1px;
+}
+.flexbox{
+    margin: 32px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.error {
+    position: absolute;
+    animation: slideDown 5.0s ease-in-out forwards;
+    margin-top: 32px;
+    margin-right: auto;
+    margin-left: auto;
+    right: 0;
+    left: 0;
+    width: fit-content;
+    height: 32px;
+    z-index: 9999;
+    background-color: #FF4848;
+    border-radius: 20px;
+    box-shadow: 0 0px 48px 0 rgba(0, 0, 0, .15);
+    text-decoration: none;
+}
+.error p{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 12px;
+    margin-right: 12px;
+    line-height: 24px;
+    font-family: "Inter", "BIZ UDPGothic", sans-serif;
+    font-size: 16px;
+    color: #F7F7F7;
+    color: transparent; 
+    text-shadow: 0 0 0 #F7F7F7;
+    text-align: center;
+}
+@keyframes slideDown {
+    0%, 100% { transform: translateY(-40dvh); }
+    20%, 90% { transform: translateY(0px); }
+}
+
+@media screen and (max-width: 1080px) {
+    .top{
+        height: 64px;
+    }
+    .top .left img{
+        height: 32px;
+        margin: 16px;
+    }
+    .top .right p{
+        font-size: 12px;
+        margin: 8px 0px;
+    }
+    main{
+        margin: 0px auto;
+        width: calc(100% - 32px);
+    }
+    main .juken_form .juken_notice{
+        width: calc(100% - 34px);
+    }
+    main .terms .notice{
+        width: calc(100% - 34px);
+    }
+    main .cbt .cbt_flex{
+        height: calc(80dvh - 64px);
+    }
+    main .cbt .operation .left .op_btn{
+        width: fit-content;
+    }
+    main .cbt .operation .right .op_end{
+        margin-left: auto;
+        margin-right: 0px;
+        width: fit-content;
+    }
+    main .result .result_flex{
+        display: block;
+    }
+    main .result .result_flex .kyu_box{
+        width: calc(100% - 34px);
+        margin-bottom: 16px;
+    }
+    main .result .result_flex .download_box{
+        width: calc(100% - 34px);
+        margin-bottom: 16px;
+    }
+}
