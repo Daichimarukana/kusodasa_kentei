@@ -124,7 +124,7 @@ main .cbt .cbt_flex .question{
     background-color: #FFFFFF;
     border:  solid #CCC 1px;
     padding: 16px;
-    overflow: hidden;
+    overflow: scroll;
 }
 main .cbt .cbt_flex .question img{
     width: auto;
